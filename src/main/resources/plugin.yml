@@ -1,0 +1,7 @@
+name: DiscordWhitelist
+version: '${project.version}'
+main: yv.tils.discordwhitelist.DiscordWhitelist
+api-version: 1.18
+authors: [ WolfiiYV ]
+description: Imported out of my SMP Plugin for some other Servers that don't need/want my SMP Plugin
+website: yvnetwork.de
