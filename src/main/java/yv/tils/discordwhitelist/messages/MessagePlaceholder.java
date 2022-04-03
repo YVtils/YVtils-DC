@@ -1,9 +1,9 @@
-package yv.tils.discordwhitelist.language;
+package yv.tils.discordwhitelist.messages;
 
 import org.bukkit.ChatColor;
 import yv.tils.discordwhitelist.DiscordWhitelist;
 
-public class LanguagePlaceholder {
+public class MessagePlaceholder {
 
     public static String UpToDate() {
         return DiscordWhitelist.getInstance().Prefix() + ChatColor.WHITE + " Plugin is up to date.";

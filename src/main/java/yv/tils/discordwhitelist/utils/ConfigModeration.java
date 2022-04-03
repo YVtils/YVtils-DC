@@ -3,7 +3,7 @@ package yv.tils.discordwhitelist.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import yv.tils.discordwhitelist.DiscordWhitelist;
-import yv.tils.discordwhitelist.language.LanguagePlaceholder;
+import yv.tils.discordwhitelist.messages.MessagePlaceholder;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,18 +21,18 @@ public class ConfigModeration {
 
         //MinecraftDiscordBridge.yml
         modifyFile1.addDefault("Active", true);
-        modifyFile1.addDefault("BotToken", LanguagePlaceholder.ConfigCreateBotToken());
-        modifyFile1.addDefault("0#",  LanguagePlaceholder.DCEmbedAuthorIcon());
+        modifyFile1.addDefault("BotToken", MessagePlaceholder.ConfigCreateBotToken());
+        modifyFile1.addDefault("0#",  MessagePlaceholder.DCEmbedAuthorIcon());
         modifyFile1.addDefault("EmbedAuthorIcon", "");
-        modifyFile1.addDefault("1#", LanguagePlaceholder.BotActivity());
+        modifyFile1.addDefault("1#", MessagePlaceholder.BotActivity());
         modifyFile1.addDefault("Activity", "none");
         modifyFile1.addDefault("ActivityMessage", "Minecraft");
-        modifyFile1.addDefault("2#", LanguagePlaceholder.BotActivityStreamingUrl());
+        modifyFile1.addDefault("2#", MessagePlaceholder.BotActivityStreamingUrl());
         modifyFile1.addDefault("ActivityStreamingUrl", "");
-        modifyFile1.addDefault("3#", LanguagePlaceholder.BotStatus());
+        modifyFile1.addDefault("3#", MessagePlaceholder.BotStatus());
         modifyFile1.addDefault("OnlineStatus", "online");
-        modifyFile1.addDefault("4#", LanguagePlaceholder.ChannelID());
-        modifyFile1.addDefault("WhitelistChannelID", LanguagePlaceholder.ConfigCreateChannelID());
+        modifyFile1.addDefault("4#", MessagePlaceholder.ChannelID());
+        modifyFile1.addDefault("WhitelistChannelID", MessagePlaceholder.ConfigCreateChannelID());
         modifyFile1.options().copyDefaults(true);
 
         //DoNotEdit.yml

@@ -8,7 +8,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import yv.tils.discordwhitelist.DiscordWhitelist;
-import yv.tils.discordwhitelist.language.LanguagePlaceholder;
+import yv.tils.discordwhitelist.messages.MessagePlaceholder;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,10 +57,10 @@ public class WhitelistMessageGetter extends ListenerAdapter {
                         String[] liststring = configname_remove.split(" ");
                         OfflinePlayer playerwhitelistremove = Bukkit.getOfflinePlayer(liststring[0]);
                         playerwhitelistremove.setWhitelisted(false);
-                        Bukkit.getConsoleSender().sendMessage(DiscordWhitelist.getInstance().Prefix() + " §f" + LanguagePlaceholder.DCConsoleLog_NameChangeEvent(liststring[0], e.getMessage().getContentRaw(),e.getMember().getUser().getAsTag()));
+                        Bukkit.getConsoleSender().sendMessage(DiscordWhitelist.getInstance().Prefix() + " §f" + MessagePlaceholder.DCConsoleLog_NameChangeEvent(liststring[0], e.getMessage().getContentRaw(),e.getMember().getUser().getAsTag()));
                         channel.sendMessageEmbeds(new BuildEmbeds().namechanged(liststring[0], e.getMessage().getContentRaw(),e.getGuild()).build()).complete().delete().queueAfter(5, TimeUnit.SECONDS);
                     }else {
-                        Bukkit.getConsoleSender().sendMessage(DiscordWhitelist.getInstance().Prefix() + " §f" + LanguagePlaceholder.DCConsoleLog_NameAddEvent(e.getMessage().getContentRaw(),e.getMember().getUser().getAsTag()));
+                        Bukkit.getConsoleSender().sendMessage(DiscordWhitelist.getInstance().Prefix() + " §f" + MessagePlaceholder.DCConsoleLog_NameAddEvent(e.getMessage().getContentRaw(),e.getMember().getUser().getAsTag()));
                         channel.sendMessageEmbeds(new BuildEmbeds().namewhitelisted(e.getMessage().getContentRaw(),e.getGuild()).build()).complete().delete().queueAfter(5, TimeUnit.SECONDS);
                     }
                     channel.deleteMessageById(MessageId).queue();
@@ -76,11 +76,11 @@ public class WhitelistMessageGetter extends ListenerAdapter {
                     }
                 }else if (statusCode == 204) {
                     channel.deleteMessageById(MessageId).queue();
-                    Bukkit.getConsoleSender().sendMessage(DiscordWhitelist.getInstance().Prefix() + " §f" + LanguagePlaceholder.DCConsoleLog_NameWrongEvent(e.getMessage().getContentRaw(),e.getMember().getUser().getAsTag()));
+                    Bukkit.getConsoleSender().sendMessage(DiscordWhitelist.getInstance().Prefix() + " §f" + MessagePlaceholder.DCConsoleLog_NameWrongEvent(e.getMessage().getContentRaw(),e.getMember().getUser().getAsTag()));
                     channel.sendMessageEmbeds(new BuildEmbeds().namenotexisting(e.getMessage().getContentRaw(),e.getGuild()).build()).complete().delete().queueAfter(15, TimeUnit.SECONDS);
                 }else {
                     channel.deleteMessageById(MessageId).queue();
-                    Bukkit.getConsoleSender().sendMessage(DiscordWhitelist.getInstance().Prefix() + " §f" + LanguagePlaceholder.DCConsoleLog_NameCheckServerError(e.getMessage().getContentRaw(),e.getMember().getUser().getAsTag()));
+                    Bukkit.getConsoleSender().sendMessage(DiscordWhitelist.getInstance().Prefix() + " §f" + MessagePlaceholder.DCConsoleLog_NameCheckServerError(e.getMessage().getContentRaw(),e.getMember().getUser().getAsTag()));
                     channel.sendMessageEmbeds(new BuildEmbeds().namecheckservererror(e.getMessage().getContentRaw(),e.getGuild()).build()).complete().delete().queueAfter(15, TimeUnit.SECONDS);
                 }
             } catch (IOException ignored) {

@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import yv.tils.discordwhitelist.DiscordWhitelist;
-import yv.tils.discordwhitelist.language.LanguagePlaceholder;
+import yv.tils.discordwhitelist.messages.MessagePlaceholder;
 
 import javax.security.auth.login.LoginException;
 import java.io.File;
@@ -26,9 +26,9 @@ public class BotStartStop {
 
 
     public void TokenCheck() {
-        if (token.equals(LanguagePlaceholder.ConfigCreateBotToken())) {
-            Bukkit.getConsoleSender().sendMessage(LanguagePlaceholder.NoBotTokenGiven());
-            Bukkit.getConsoleSender().sendMessage(LanguagePlaceholder.BotStartupFailed());
+        if (token.equals(MessagePlaceholder.ConfigCreateBotToken())) {
+            Bukkit.getConsoleSender().sendMessage(MessagePlaceholder.NoBotTokenGiven());
+            Bukkit.getConsoleSender().sendMessage(MessagePlaceholder.BotStartupFailed());
         }else {
             BotSettings();
         }
@@ -65,7 +65,7 @@ public class BotStartStop {
 
         try {
             DiscordWhitelist.getInstance().jda = builder.build();
-            Bukkit.getConsoleSender().sendMessage(LanguagePlaceholder.BotStartupFinished());
+            Bukkit.getConsoleSender().sendMessage(MessagePlaceholder.BotStartupFinished());
         } catch (LoginException e) {
             e.printStackTrace();
         }
