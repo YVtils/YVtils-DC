@@ -1,5 +1,5 @@
 name: DiscordWhitelist
-version: '${project.version}'
+version: ${project.version}
 main: yv.tils.discordwhitelist.DiscordWhitelist
 api-version: 1.18
 authors: [ WolfiiYV ]

@@ -13,8 +13,6 @@ import java.io.File;
 
 public class BotStartStop {
 
-
-
     File file1 = new File(DiscordWhitelist.getInstance().getDataFolder(), "MinecraftDiscordBridge.yml");
     YamlConfiguration modifyFile1 = YamlConfiguration.loadConfiguration(file1);
 

@@ -10,7 +10,7 @@ public class MessagePlaceholder {
     }
 
     public static String UpdateAvailable() {
-        return DiscordWhitelist.getInstance().Prefix() + ChatColor.YELLOW + " The Plugin has a new Version available. Load it here: " + ChatColor.GRAY + "https://www.spigotmc.org/resources/yvtils-ba.97642/";
+        return DiscordWhitelist.getInstance().Prefix() + ChatColor.YELLOW + " The Plugin has a new Version available. Load it here: " + ChatColor.GRAY + "https://www.spigotmc.org/resources/discordxminecraft-whitelister.101391/";
     }
 
     public static String ConfigCreateBotToken() {
@@ -18,7 +18,7 @@ public class MessagePlaceholder {
     }
 
     public static String NoBotTokenGiven() {
-        return "No Bot Token was given! Deactivate the Discord Bot or insert a valid Token!";
+        return "No Bot Token was given! Delete this Plugin or insert a valid Token!";
     }
 
     public static String BotStartupFailed() {

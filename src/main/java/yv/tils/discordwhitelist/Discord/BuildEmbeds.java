@@ -22,118 +22,47 @@ public class BuildEmbeds {
         }else {
             st = mc_dcbridge.getString("EmbedAuthorIcon");
         }
-
         return st;
     }
 
     public EmbedBuilder namechanged(String oldname, String newname, Guild guild) {
-        EmbedBuilder s;
-        EmbedBuilder en = builder
+        return builder
                 .setTitle("You changed your whitelisted Minecraft Account successfully!")
                 .setDescription(oldname + " -> " + newname)
                 .setColor(new Color(7719960))
                 .setFooter("YVtils-SMP • https://yvnetwork.de/yvtils-smp/spigot", "https://yvnetwork.de/wp-content/uploads/2022/03/YVtils-SMP.png")
-                .setAuthor("Whitelist Adminstration", null, urlisempty());
-        if (DiscordWhitelist.getInstance().getConfig().getString("Language").equals("en")) {
-            s = en;
-        }else if (DiscordWhitelist.getInstance().getConfig().getString("Language").equals("de")) {
-            s = builder
-                    .setTitle("Du hast erfolgreich deinen gewhitelisteten Account geändert!")
-                    .setDescription(oldname + " -> " + newname)
-                    .setColor(new Color(7719960))
-                    .setFooter("YVtils-SMP • https://yvnetwork.de/yvtils-smp/spigot", "https://yvnetwork.de/wp-content/uploads/2022/03/YVtils-SMP.png")
-                    .setAuthor("Whitelist Adminstration", null, urlisempty());
-        }else {
-            s= en;
-        }
-        return s;
+                .setAuthor("Whitelist Administration", null, urlisempty());
     }
     public EmbedBuilder namewhitelisted(String accname, Guild guild) {
-        EmbedBuilder s;
-        EmbedBuilder en = builder
+        return builder
                 .setTitle("You whitelisted your Minecraft Account successfully!")
                 .setDescription("Account Name: " + accname)
                 .setColor(new Color(7719960))
                 .setFooter("YVtils-SMP • https://yvnetwork.de/yvtils-smp/spigot", "https://yvnetwork.de/wp-content/uploads/2022/03/YVtils-SMP.png")
-                .setAuthor("Whitelist Adminstration", null, urlisempty());
-        if (DiscordWhitelist.getInstance().getConfig().getString("Language").equals("en")) {
-            s = en;
-        }else if (DiscordWhitelist.getInstance().getConfig().getString("Language").equals("de")) {
-            s = builder
-                    .setTitle("Du hast deinen Minecraft Account erfolgreich gewhitelistet!")
-                    .setDescription("Account Name: " + accname)
-                    .setColor(new Color(7719960))
-                    .setFooter("YVtils-SMP • https://yvnetwork.de/yvtils-smp/spigot", "https://yvnetwork.de/wp-content/uploads/2022/03/YVtils-SMP.png")
-                    .setAuthor("Whitelist Adminstration", null, urlisempty());
-        }else {
-            s= en;
-        }
-        return s;
+                .setAuthor("Whitelist Administration", null, urlisempty());
     }
     public EmbedBuilder namenotexisting(String accname, Guild guild) {
-        EmbedBuilder s;
-        EmbedBuilder en = builder
+        return builder
                 .setTitle("This Minecraft Account doesn't exist!")
                 .setDescription("Account Name: " + accname + " • Check your Name and try it again! When you think this is an Bug report it directly to the Developer or contact your Server Administration, that thy can contact the Developer!")
                 .setColor(new Color(13375512))
                 .setFooter("YVtils-SMP • https://yvnetwork.de/yvtils-smp/spigot", "https://yvnetwork.de/wp-content/uploads/2022/03/YVtils-SMP.png")
-                .setAuthor("Whitelist Adminstration", null, urlisempty());
-        if (DiscordWhitelist.getInstance().getConfig().getString("Language").equals("en")) {
-            s = en;
-        }else if (DiscordWhitelist.getInstance().getConfig().getString("Language").equals("de")) {
-            s = builder
-                    .setTitle("Dieser Minecraft Account existiert nicht!")
-                    .setDescription("Account Name: " + accname + "• Überprüfe den Namen und versuche es erneut! Wenn du denkst das es ein Fehler ist, dann kontaktiere denn Developer oder kontaktiere die Server Administration, dass sie es dem Developer mitteilen können!")
-                    .setColor(new Color(13375512))
-                    .setFooter("YVtils-SMP • https://yvnetwork.de/yvtils-smp/spigot", "https://yvnetwork.de/wp-content/uploads/2022/03/YVtils-SMP.png")
-                    .setAuthor("Whitelist Adminstration", null, urlisempty());
-        }else {
-            s= en;
-        }
-        return s;
+                .setAuthor("Whitelist Administration", null, urlisempty());
     }
     public EmbedBuilder namecheckservererror(String accname, Guild guild) {
-        EmbedBuilder s;
-        EmbedBuilder en = builder
+        return builder
                 .setTitle("Name Check Servers are not available!")
-                .setDescription("Account Name: " + accname + " • Try it again in a few Minutes/Hours! When this Error don't fix contact the Developer!")
+                .setDescription("Account Name: " + accname + " • Try it again in a few Minutes/Hours! When this Error don't get fix contact the Support of this Plugin!")
                 .setColor(new Color(13375512))
                 .setFooter("YVtils-SMP • https://yvnetwork.de/yvtils-smp/spigot", "https://yvnetwork.de/wp-content/uploads/2022/03/YVtils-SMP.png")
-                .setAuthor("Whitelist Adminstration", null, urlisempty());
-        if (DiscordWhitelist.getInstance().getConfig().getString("Language").equals("en")) {
-            s = en;
-        }else if (DiscordWhitelist.getInstance().getConfig().getString("Language").equals("de")) {
-            s = builder
-                    .setTitle("Namen Überprüfungs Server sind nicht erreichbar!")
-                    .setDescription("Account Name: " + accname + " • Versuche es in ein paar Minuten/Stunden erneut! Wenn dieser Fehler bestehen bleibt kontaktiere den Developer!")
-                    .setColor(new Color(13375512))
-                    .setFooter("YVtils-SMP • https://yvnetwork.de/yvtils-smp/spigot", "https://yvnetwork.de/wp-content/uploads/2022/03/YVtils-SMP.png")
-                    .setAuthor("Whitelist Adminstration", null, urlisempty());
-        }else {
-            s= en;
-        }
-        return s;
+                .setAuthor("Whitelist Administration", null, urlisempty());
     }
     public EmbedBuilder namehasunallowedcharacters(String accname, Guild guild) {
-        EmbedBuilder s;
-        EmbedBuilder en = builder
+        return builder
                 .setTitle("This Minecraft Account doesn't exist!")
-                .setDescription("Account Name: " + accname + " • You used unallowed characters! Allowed are: **a-z; A-Z; 0-9; _**")
+                .setDescription("Account Name: " + accname + " • You used unallowed characters! Allowed are: a-z; A-Z; 0-9; _")
                 .setColor(new Color(13375512))
                 .setFooter("YVtils-SMP • https://yvnetwork.de/yvtils-smp/spigot", "https://yvnetwork.de/wp-content/uploads/2022/03/YVtils-SMP.png")
-                .setAuthor("Whitelist Adminstration", null, urlisempty());
-        if (DiscordWhitelist.getInstance().getConfig().getString("Language").equals("en")) {
-            s = en;
-        }else if (DiscordWhitelist.getInstance().getConfig().getString("Language").equals("de")) {
-            s = builder
-                    .setTitle("Dieser Minecraft Account existiert nicht!")
-                    .setDescription("Account Name: " + accname + " • Du hast unerlaubte Zeichen verwendet! Erlaubt sind: **a-z; A-Z; 0-9; _**")
-                    .setColor(new Color(13375512))
-                    .setFooter("YVtils-SMP • https://yvnetwork.de/yvtils-smp/spigot", "https://yvnetwork.de/wp-content/uploads/2022/03/YVtils-SMP.png")
-                    .setAuthor("Whitelist Adminstration", null, urlisempty());
-        }else {
-            s= en;
-        }
-        return s;
+                .setAuthor("Whitelist Administration", null, urlisempty());
     }
 }

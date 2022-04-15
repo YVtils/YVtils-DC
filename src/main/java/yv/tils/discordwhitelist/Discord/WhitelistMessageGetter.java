@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class WhitelistMessageGetter extends ListenerAdapter {
 
-    //DiscordName+Tag: Minecraft Username -> Example: WolfiiYV#3204: WolfiiYV
+    //DiscordName+Tag: Minecraft Username -> Example: WolfiiYV#3204: WolfiiYV aab8f297-b6f0-4ebb-a064-9968e1a1cc45
 
     File file1 = new File(DiscordWhitelist.getInstance().getDataFolder(), "MinecraftDiscordBridge.yml");
     YamlConfiguration mc_dcbridge = YamlConfiguration.loadConfiguration(file1);
