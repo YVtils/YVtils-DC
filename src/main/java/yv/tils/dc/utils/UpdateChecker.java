@@ -1,6 +1,6 @@
-package yv.tils.discordwhitelist.utils;
+package yv.tils.dc.utils;
 
-import yv.tils.discordwhitelist.DiscordWhitelist;
+import yv.tils.dc.DiscordPlugin;
 import org.bukkit.Bukkit;
 
 import java.io.IOException;
@@ -11,10 +11,10 @@ import java.util.function.Consumer;
 
 public class UpdateChecker {
 
-    private DiscordWhitelist plugin;
+    private DiscordPlugin plugin;
     private int resourceId;
 
-    public UpdateChecker(DiscordWhitelist plugin, int resourceId) {
+    public UpdateChecker(DiscordPlugin plugin, int resourceId) {
         this.plugin  = plugin;
         this.resourceId = resourceId;
     }

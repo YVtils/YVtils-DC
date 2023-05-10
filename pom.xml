@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>yv.tils.discordwhitelist</groupId>
-    <artifactId>DiscordWhitelist</artifactId>
-    <version>1.0</version>
+    <groupId>yv.tils.dc</groupId>
+    <artifactId>YVtils-DC</artifactId>
+    <version>2.0</version>
     <packaging>jar</packaging>
 
-    <name>DiscordWhitelist</name>
+    <name>YVtils-DC</name>
 
-    <description>Imported out of my SMP Plugin for some other Servers that don't need/want my SMP Plugin</description>
+    <description>Discord part of the YVtils-SMP plugin</description>
     <properties>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -50,8 +50,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <finalName>DiscordxMinecraft-Whitelist v${project.version}</finalName>
-                    <outputDirectory>C:\Users\Wolfii\Desktop\Minecraft\MC Server\SelfCodedPluginTest\plugins</outputDirectory>
+                    <finalName>YVtils-DC v${project.version}</finalName>
                 </configuration>
             </plugin>
         </plugins>
@@ -78,30 +77,19 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1.18.1-R0.1-SNAPSHOT</version>
+            <version>1.19.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>5.0.0-alpha.9</version>
+            <version>5.0.0-beta.9</version>
             <exclusions>
                 <exclusion>
                     <groupId>club.minnced</groupId>
                     <artifactId>opus-java</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <!-- jda dependencies (required to relocate them) -->
-        <dependency>
-            <groupId>com.neovisionaries</groupId>
-            <artifactId>nv-websocket-client</artifactId>
-            <version>2.14</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.trove4j</groupId>
-            <artifactId>trove4j</artifactId>
-            <version>3.0.3</version>
         </dependency>
     </dependencies>
 </project>
