@@ -30,7 +30,7 @@ public class DiscordModuleConfig {
         ymlfile.addDefault("WhitelistFeature.Channel", "CHANNEL ID");
         ymlfile.addDefault("WhitelistFeature.Role", "ROLE ID");
 
-        ymlfile.addDefault("#3", "See here for Permission Names: https://ci.dv8tion.net/job/JDA5/javadoc/net/dv8tion/jda/api/Permission.html");
+        ymlfile.addDefault("3#", "See here for Permission Names: https://ci.dv8tion.net/job/JDA5/javadoc/net/dv8tion/jda/api/Permission.html");
         ymlfile.addDefault("ServerInfoCommand.Permission", "PERMISSION");
 
         ymlfile.addDefault("WhitelistCommand.Permission", "PERMISSION");
