@@ -14,7 +14,7 @@ public class ImportWhitelist {
     List<String> WhitelistManager = DiscordPlugin.getInstance().WhitelistManager;
 
     public void Importer() {
-        //DC TAG,MC NAME,UUID
+        //DC ID, MC NAME, UUID
         String WhitelistKeys = linkedRequest.getKeys(false).toString();
         String[] WhitelistKey = WhitelistKeys.split(", ");
 

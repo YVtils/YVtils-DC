@@ -13,7 +13,7 @@ public class LinkedAccountsConfig {
     YamlConfiguration ymlfile = YamlConfiguration.loadConfiguration(file);
 
     public void StringInput() {
-        ymlfile.addDefault("DiscordName#Tag", "Minecraft Username + UUID");
+        ymlfile.addDefault("DiscordID", "Minecraft Username + UUID");
         ymlfile.options().copyDefaults(true);
         fileSave();
     }

@@ -24,6 +24,7 @@ public final class DiscordPlugin extends JavaPlugin {
     public JDA jda;
     private static DiscordPlugin instance;
     public final List<String> WhitelistManager = new ArrayList<>();
+    public boolean chatSyncID = true;
 
     public void onLoad() {
         instance = this;

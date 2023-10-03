@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import yv.tils.dc.DiscordPlugin;
 import yv.tils.dc.config.DiscordConfigManager;
 import yv.tils.dc.discord.BotManager.BotStartStop;
 
@@ -21,7 +22,7 @@ public class ChatSync extends ListenerAdapter implements Listener {
     @EventHandler
     public void onEvent(AsyncPlayerChatEvent e) {
         if (!yml.getBoolean("ChatSync.Enabled")) return;
-        if (!e.getPlayer().hasPermission("yvtils.smp.chatsync")) return;
+        if (!e.getPlayer().hasPermission("yvtils.dc.chatsync")) return;
 
         String message = e.getMessage();
         Player sender = e.getPlayer();
@@ -45,7 +46,7 @@ public class ChatSync extends ListenerAdapter implements Listener {
         if (e.getMember().getUser().isBot()) return;
 
         String message = e.getMessage().getContentRaw();
-        String sender = e.getMember().getUser().getAsTag();
+        String sender = e.getMember().getUser().getName();
 
         sendMCMessage(sender, message);
     }
@@ -55,7 +56,14 @@ public class ChatSync extends ListenerAdapter implements Listener {
     }
 
     public void sendDCMessage(Player sender, String message) {
-        TextChannel textChannel = BotStartStop.getInstance().jda.getTextChannelById(yml.getString("ChatSync.Channel"));
-        textChannel.sendMessageEmbeds(new ChatSyncEmbed().Embed(sender, message).build()).queue();
+        try {
+            TextChannel textChannel = BotStartStop.getInstance().jda.getTextChannelById(yml.getString("ChatSync.Channel"));
+            textChannel.sendMessageEmbeds(new ChatSyncEmbed().Embed(sender, message).build()).queue();
+        }catch (NumberFormatException ignored) {
+            Bukkit.getLogger().severe("[YVtils-DC -> ChatSync] " +
+                    "Invalid channel ID: '" + yml.getString("ChatSync.Channel") + "'! Make sure to put a valid channel ID in the config file or disable this feature! (plugins/YVtils-DC/config.yml/ChatSync)");
+
+            DiscordPlugin.getInstance().chatSyncID = false;
+        }
     }
 }

@@ -14,10 +14,10 @@ import yv.tils.dc.DiscordPlugin;
 import yv.tils.dc.config.DiscordConfigManager;
 import yv.tils.dc.discord.CommandManager.CommandHandler;
 import yv.tils.dc.discord.CommandManager.CommandRegister;
-import yv.tils.dc.discord.ConsoleSync.GetConsole;
-import yv.tils.dc.discord.ConsoleSync.SendCMD;
+import yv.tils.dc.discord.sync.ConsoleSync.GetConsole;
+import yv.tils.dc.discord.sync.ConsoleSync.SendCMD;
 import yv.tils.dc.discord.Whitelist.ForceRemove;
-import yv.tils.dc.discord.Whitelist.WhitelistMessageGetter;
+import yv.tils.dc.discord.Whitelist.SelfAdd;
 import yv.tils.dc.discord.sync.ChatSync;
 import yv.tils.dc.discord.sync.stats.StatsDescription;
 import yv.tils.dc.utils.language.LanguageFile;
@@ -92,7 +92,7 @@ public class BotStartStop {
 
         builder.addEventListeners(new CommandRegister());
         builder.addEventListeners(new CommandHandler());
-        builder.addEventListeners(new WhitelistMessageGetter());
+        builder.addEventListeners(new SelfAdd());
         if (new DiscordConfigManager().ConfigRequest().getBoolean("ChatSync.Enabled")) {
             builder.addEventListeners(new ChatSync());
         }
@@ -109,15 +109,16 @@ public class BotStartStop {
 
         Bukkit.getConsoleSender().sendMessage(LanguageFile.getMessage(LanguageMessage.MODULE_DISCORD_STARTUP_FINISHED));
 
-        new StatsDescription().editDesc();
+        if (new DiscordConfigManager().ConfigRequest().getBoolean("ChatSync.Enabled")) {
+            new StatsDescription().editDesc();
+        }
 
         if (new DiscordConfigManager().ConfigRequest().getBoolean("ConsoleSync.Enabled")) {
             this.appender = new GetConsole(DiscordPlugin.getInstance(), this.jda);
             try {
                 this.logger = (Logger) LogManager.getRootLogger();
                 this.logger.addAppender(this.appender);
-            } catch (Exception ignored) {
-            }
+            } catch (Exception ignored) {}
             this.appender.sendMessages();
         }
     }

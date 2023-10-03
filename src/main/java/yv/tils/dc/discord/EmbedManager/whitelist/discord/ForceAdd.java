@@ -18,6 +18,7 @@ public class ForceAdd {
         list2.add(mc);
         list1.add("DCNAME");
         list2.add(dc);
+
         return builder
                 .setTitle(LanguageFile.getMessage(LanguageMessage.EMBED_CMD_WHITELIST_ADD_TITLE))
                 .setDescription(new LanguageFile().ListReplacer(LanguageFile.getMessage(LanguageMessage.EMBED_CMD_WHITELIST_ADD_DESC), list1, list2))
@@ -35,6 +36,7 @@ public class ForceAdd {
         list2.add(mc_old);
         list1.add("NEWNAME");
         list2.add(mc_new);
+
         return builder
                 .setTitle(new LanguageFile().ListReplacer(LanguageFile.getMessage(LanguageMessage.EMBED_CMD_WHITELIST_REPLACE_TITLE), list1, list2))
                 .setDescription(new LanguageFile().ListReplacer(LanguageFile.getMessage(LanguageMessage.EMBED_CMD_WHITELIST_REPLACE_DESC), list1, list2))

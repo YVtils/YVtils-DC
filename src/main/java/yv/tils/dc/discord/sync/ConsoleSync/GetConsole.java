@@ -1,8 +1,6 @@
-package yv.tils.dc.discord.ConsoleSync;
+package yv.tils.dc.discord.sync.ConsoleSync;
 
 import net.dv8tion.jda.api.JDA;
-import org.apache.logging.log4j.core.Filter;
-import org.apache.logging.log4j.core.Layout;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.appender.AbstractAppender;
 import org.bukkit.Bukkit;
@@ -55,7 +53,7 @@ public class GetConsole extends AbstractAppender {
                         try {
                             GetConsole.this.jda.getTextChannelById(channel).sendMessage("```" + GetConsole.this.messages + "```").queue();
                         } catch (NumberFormatException exce) {
-                            Bukkit.getLogger().severe("[YVtils-DC -> ConsoleSync] Invalid channel ID '" + channel + "'! Make sure to put a valid channel ID in the config file!");
+                            Bukkit.getLogger().severe("[YVtils-DC -> ConsoleSync] Invalid channel ID '" + channel + "'! Make sure to put a valid channel ID in the config file or disable this feature! (plugins/YVtils-DC/config.yml/ConsoleSync)");
                             this.cancel();
                         }
                     }

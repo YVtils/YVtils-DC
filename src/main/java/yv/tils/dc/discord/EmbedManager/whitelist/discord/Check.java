@@ -19,7 +19,12 @@ public class Check {
         list1.add("MCNAME");
         list2.add(mc);
         list1.add("DCNAME");
-        list2.add(dc);
+
+        if (dc.matches("\\d+")) {
+            list2.add("<@" + dc + ">");
+        }else {
+            list2.add(dc);
+        }
 
         if (b) {
             return builder

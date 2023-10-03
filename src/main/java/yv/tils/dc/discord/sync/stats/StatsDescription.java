@@ -33,25 +33,36 @@ public class StatsDescription {
                 SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-                new ConsoleLog("Task executed!");
+                new ConsoleLog("Task running!");
+
+                TextChannel channel = null;
 
                 for (int i = 0; i < guilds.size(); i++) {
-                    TextChannel channel;
                     try {
                         channel = guilds.get(i).getTextChannelById(ChannelID);
-                    }catch (NullPointerException ignored) {
-                        channel = guilds.get(i+1).getTextChannelById(ChannelID);
-                    }
-
-                    if (channel == null) return;
-
-                    try {
-                        if (serverip.equals(null)) {
-                            channel.getManager().setTopic("Server IP:" + serverip + " Version: " + version + " Online Players: " + onlineplayers + " \nLast Updated: " + dateformat.format(timestamp)).queue();
+                    } catch (NumberFormatException ignored) {
+                        if (!(guilds.size() > i + 1)) {
+                            Bukkit.getLogger().severe("[YVtils-DC -> StatsDescription] " +
+                                    ("Invalid channel ID: '" + ChannelID + "'! Make sure to put a valid channel ID in the config file or disable this feature! (plugins/YVtils-DC/config.yml/ChatSync)"));
+                            this.cancel();
+                            return;
                         }
-                    }catch (NullPointerException ignored) {
+                    }
+                }
+
+                if (channel == null) {
+                    this.cancel();
+                    return;
+                }
+
+                try {
+                    if (serverip.equals("null")) {
+                        channel.getManager().setTopic("Server IP: " + serverip + " Version: " + version + " Online Players: " + onlineplayers + " \nLast Updated: " + dateformat.format(timestamp)).queue();
+                    }else {
                         channel.getManager().setTopic("Version: " + version + " Online Players: " + onlineplayers + " \nLast Updated: " + dateformat.format(timestamp)).queue();
                     }
+                }catch (NullPointerException ignored) {
+                    channel.getManager().setTopic("Version: " + version + " Online Players: " + onlineplayers + " \nLast Updated: " + dateformat.format(timestamp)).queue();
                 }
             }
         }.runTaskTimer(DiscordPlugin.getInstance(), 0L, 12000L);

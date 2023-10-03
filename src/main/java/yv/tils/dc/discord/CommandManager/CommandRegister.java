@@ -57,6 +57,8 @@ public class CommandRegister extends ListenerAdapter {
         subCommandData1.addOptions(options1);
 
         //ForceRemove
+        options2.add(new OptionData(OptionType.INTEGER, "site",
+                "Enter the site you want to see from the whitelist (25 players per site), leave blank for site one", false));
         subCommandData2.addOptions(options2);
 
         //Check
