@@ -1,0 +1,6 @@
+name: YVtils-DC
+version: 3.0.0
+main: yv.tils.dc.YVtils
+api-version: '1.21'
+authors: [ WolfiiYV ]
+website: https://yvtils.net

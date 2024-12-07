@@ -1,0 +1,131 @@
+package yv.tils.dc.mods.discord.whitelist
+
+import net.dv8tion.jda.api.entities.User
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
+import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
+import net.dv8tion.jda.api.interactions.components.ActionRow
+import org.bukkit.Bukkit
+import yv.tils.dc.YVtils
+import yv.tils.dc.mods.discord.BotManager
+import yv.tils.dc.mods.discord.embedManager.whitelist.RoleHierarchyError
+import yv.tils.dc.mods.discord.embedManager.whitelist.discord.ForceRemove
+import yv.tils.dc.utils.configs.discord.DiscordConfig
+import yv.tils.dc.utils.configs.language.LangStrings
+import yv.tils.dc.utils.configs.language.Language
+import yv.tils.dc.utils.internalAPI.Placeholder
+import yv.tils.dc.utils.logger.Debugger
+
+class ForceRemove : ListenerAdapter() {
+    override fun onStringSelectInteraction(e: StringSelectInteractionEvent) {
+        val list = ImportWhitelist.whitelistManager
+
+        if (e.interaction.values.isNotEmpty()) {
+            val guild = e.guild
+            var values = e.values.toString()
+
+            values = values.replace("[", "")
+            values = values.replace("]", "")
+
+            val args = values.split(",")
+
+            val player = Bukkit.getOfflinePlayer(args[1])
+
+            list.remove(args[0] + "," + args[1] + "," + args[2])
+            Bukkit.getScheduler().runTask(YVtils.instance, Runnable {
+                player.isWhitelisted = false
+            })
+            DiscordConfig().changeValue(args[0])
+
+            val user: User
+            try {
+                user = BotManager.jda.retrieveUserById(args[0]).complete()
+            } catch (_: NumberFormatException) {
+                reply(e.member?.user?.globalName, args[1], args[0], list.size, args as MutableList<String>, e)
+                return
+            }
+
+            Debugger().log(
+                "ForceRemove",
+                "Removed ${args[1]} from the whitelist",
+                "yv.tils.dc.mods.discord.whitelist.ForceRemove"
+            )
+
+            runCatching {
+                try {
+                    var role = DiscordConfig.config["whitelistFeature.role"] as String
+                    role = role.replace(" ", "")
+                    val roles = role.split(",")
+                    for (r in roles) {
+                        guild?.getRoleById(r)?.let { guild.removeRoleFromMember(user, it) }?.queue()
+                    }
+                } catch (_: NumberFormatException) {
+                    e.reply("").setEmbeds(
+                        RoleHierarchyError().embed(
+                            DiscordConfig.config["whitelistFeature.role"] as String,
+                            guild
+                        ).build()
+                    ).setEphemeral(true).queue()
+                }
+            }
+
+            runCatching {
+                reply(e.member?.user?.globalName, args[1], args[0], list.size, args as MutableList<String>, e)
+            }
+        }
+    }
+
+    override fun onButtonInteraction(e: ButtonInteractionEvent) {
+        val buttonID = e.componentId
+
+        when (buttonID) {
+            "whitelist_remove_prev" -> {
+                val currentPage = e.message.embeds[0].footer?.text?.split(" ")?.get(3)?.toInt() ?: 1
+
+                e.editMessageEmbeds(ForceRemove().embed(ImportWhitelist.whitelistManager.size, YVtils.instance.server.hasWhitelist(), currentPage - 1).build())
+                    .setComponents(
+                        ActionRow.of(ForceRemove().makeDropDown(currentPage - 1).build()),
+                        ActionRow.of(ForceRemove().makeButtons(ImportWhitelist.whitelistManager.size, currentPage - 1))
+                    )
+                    .queue()
+            }
+
+            "whitelist_remove_next" -> {
+                val currentPage = e.message.embeds[0].footer?.text?.split(" ")?.get(3)?.toInt() ?: 1
+
+                e.editMessageEmbeds(ForceRemove().embed(ImportWhitelist.whitelistManager.size, YVtils.instance.server.hasWhitelist(), currentPage + 1).build())
+                    .setComponents(
+                        ActionRow.of(ForceRemove().makeDropDown(currentPage + 1).build()),
+                        ActionRow.of(ForceRemove().makeButtons(ImportWhitelist.whitelistManager.size, currentPage + 1))
+                    )
+                    .queue()
+            }
+
+            else -> return
+        }
+    }
+
+    private fun reply(
+        exec: String?,
+        mc: String,
+        dc: String,
+        size: Int,
+        args: MutableList<String>,
+        e: StringSelectInteractionEvent,
+    ) {
+        YVtils.instance.server.consoleSender.sendMessage(
+            Placeholder().replacer(
+                Language().getMessage(LangStrings.MODULE_DISCORD_CMD_REGISTERED_REMOVE),
+                listOf("discordUser", "mcName", "dcName"),
+                listOf(exec!!, mc, dc)
+            )
+        )
+
+        e.editMessageEmbeds(ForceRemove().embedRemove(size, YVtils.instance.server.hasWhitelist(), 1, args).build())
+            .setComponents(
+                ActionRow.of(ForceRemove().makeDropDown(1).build()),
+                ActionRow.of(ForceRemove().makeButtons(ImportWhitelist.whitelistManager.size, 1))
+            )
+            .queue()
+    }
+}

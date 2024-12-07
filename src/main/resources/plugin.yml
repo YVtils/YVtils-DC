@@ -1,8 +1,10 @@
 name: YVtils-DC
-version: ${project.version}
-main: yv.tils.dc.DiscordPlugin
-api-version: 1.18
-authors: [ WolfiiYV ]
-contributor: [ SlWed, black_Kittys, SilverZer0 ]
-description: Discord part of the YVtils-SMP plugin
-website: yvnetwork.de
+version: 3.0.0
+main: yv.tils.dc.YVtils
+author: WolfiiYV
+api-version: 1.19
+website: https://yvtils.net/
+prefix: YVtils-DC
+permissions:
+  yvtils.smp.chatSync:
+    description: Allows the player to sync their messages with the Discord server
