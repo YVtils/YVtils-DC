@@ -59,8 +59,8 @@ class BotManager {
             builder = JDABuilder.createDefault(token)
             return true
         } else {
-            YVtils.instance.server.consoleSender.sendMessage(Language().getMessage(LangStrings.MODULE_DISCORD_NO_BOT_TOKEN_GIVEN))
-            YVtils.instance.server.consoleSender.sendMessage(Language().getMessage(LangStrings.MODULE_DISCORD_STARTUP_FAILED))
+            YVtils.instance.logger.severe(Language().getRawMessage(LangStrings.MODULE_DISCORD_NO_BOT_TOKEN_GIVEN))
+            YVtils.instance.logger.severe(Language().getRawMessage(LangStrings.MODULE_DISCORD_STARTUP_FAILED))
             started = false
             YVtils.instance.server.pluginManager.disablePlugin(YVtils.instance)
             return false

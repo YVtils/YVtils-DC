@@ -3,8 +3,8 @@ package yv.tils.dc.mods.discord.sync.stats
 import org.bukkit.Bukkit
 import yv.tils.dc.YVtils
 import yv.tils.dc.utils.configs.discord.DiscordConfig
+import yv.tils.dc.utils.configs.global.Config
 import yv.tils.dc.utils.internalAPI.Placeholder
-import java.text.SimpleDateFormat
 
 class CollectStats {
     companion object {
@@ -80,8 +80,10 @@ class CollectStats {
             lastPlayerCount = Placeholder().calcOnlinePlayers().toString()
         }
 
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
-        lastRefreshed = dateFormat.format(System.currentTimeMillis())
+
+        lastRefreshed = Config().parseTimezone()
+
+
 
         serverStatusText = layoutServerStatus.replace("<status>", serverStatus)
         serverStatusText = serverStatusText.replace(

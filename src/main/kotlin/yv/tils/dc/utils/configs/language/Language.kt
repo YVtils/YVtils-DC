@@ -113,6 +113,19 @@ class Language {
         }
     }
 
+    fun getRawMessage(message: LangStrings): String {
+        if (config_global[message.name] == null) {
+            Debugger().log(
+                "Language String not found",
+                message.name,
+                "yv.tils.smp.utils.configs.language.Language.getMessage()"
+            )
+            return message.name
+        } else {
+            return config_global[message.name].toString()
+        }
+    }
+
     fun directFormat(en: String, de: String): Component {
         val s = if (Config.config["Language"] == "en") {
             en

@@ -7,12 +7,12 @@ plugins {
 
     id("com.github.johnrengelman.shadow") version "8.1.1"
 
-    id("io.papermc.paperweight.userdev") version "1.7.6"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.8"
 
     id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
-val yvtilsVersion = "3.0.0"
+val yvtilsVersion = "3.0.1"
 val jdaVersion = "5.2.1"
 
 group = "yv.tils"
@@ -20,6 +20,7 @@ version = yvtilsVersion
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 }
@@ -32,7 +33,7 @@ dependencies {
 
 tasks.register("updateVersionFiles") {
     doLast {
-        val versionFile = yvtilsVersion // Retrieve the version from your build script
+        val versionFile = yvtilsVersion
 
         val filesToUpdate = listOf("src/main/resources/plugin.yml", "src/main/resources/paper-plugin.yml")
         filesToUpdate.forEach { file ->

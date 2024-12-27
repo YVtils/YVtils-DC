@@ -14,6 +14,8 @@ class config_yml {
         ymlFile.addDefault("prefix", "<dark_gray>[<blue>YVtils-DC<dark_gray>]<white>")
         ymlFile.addDefault("serverIP", "smp.xyz.net")
 
+        ymlFile.addDefault("timezone", "default")
+
         ymlFile.addDefault("playerUpdateMessage", true)
 
         ymlFile.addDefault("debug", false)

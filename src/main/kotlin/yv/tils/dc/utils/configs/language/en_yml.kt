@@ -66,6 +66,11 @@ class en_yml {
         )
 
         ymlFile.addDefault(
+            "CONFIG_PARSE_ERROR_TIMEZONE",
+            "The timezone could not be read correctly! Please check the configuration!"
+        )
+
+        ymlFile.addDefault(
             "WHITELIST_EMPTY",
             "The whitelist is empty!"
         )
