@@ -2,18 +2,18 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "2.1.0"
-    kotlin("plugin.serialization") version "2.1.0"
+    kotlin("jvm") version "2.1.20"
+    kotlin("plugin.serialization") version "2.1.20"
 
     id("com.github.johnrengelman.shadow") version "8.1.1"
 
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.8"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.16"
 
     id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
-val yvtilsVersion = "3.0.1"
-val jdaVersion = "5.2.1"
+val yvtilsVersion = "3.0.2"
+val jdaVersion = "5.5.1"
 
 group = "yv.tils"
 version = yvtilsVersion
@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.4-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
 
     implementation("net.dv8tion", "JDA", jdaVersion)
 }
